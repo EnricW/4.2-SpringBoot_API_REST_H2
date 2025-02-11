@@ -5,25 +5,28 @@ import cat.itacademy.s04.t02.n01.services.FruitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
 @RequestMapping("/fruit")
+@Validated
 public class FruitController {
 
     @Autowired
     private FruitService fruitService;
 
     @PostMapping("/add")
-    public ResponseEntity<Fruit> addFruit(@RequestBody Fruit fruit) {
+    public ResponseEntity<Fruit> addFruit(@Valid @RequestBody Fruit fruit) {
         Fruit savedFruit = fruitService.addFruit(fruit);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedFruit);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Fruit> updateFruit(@RequestBody Fruit fruit) {
+    public ResponseEntity<Fruit> updateFruit(@Valid @RequestBody Fruit fruit) {
         return ResponseEntity.ok(fruitService.updateFruit(fruit));
     }
 

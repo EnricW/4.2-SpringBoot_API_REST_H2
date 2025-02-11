@@ -2,6 +2,10 @@ package cat.itacademy.s04.t02.n01.model;
 
 import jakarta.persistence.*;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 @Entity
 public class Fruit {
 
@@ -9,8 +13,11 @@ public class Fruit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @NotBlank(message = "Fruit name cannot be empty")
+    @Size(max = 50, message = "Fruit name cannot exceed 50 characters")
     private String name;
 
+    @Min(value = 1, message = "Fruit weight must be positive")
     private int weight;
 
     public Fruit() {
