@@ -1,4 +1,4 @@
-# CRUD Exercise with H2 🍏
+# CRUD Exercise with H2 🍓
 
 ## Description
 
